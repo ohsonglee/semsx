@@ -16,9 +16,10 @@ public class MysqlCourseDao implements CourseDao {
 		this.dbConnectionPool = dbConnectionPool;
 	}
 	
-	public void insert(CourseVo course) throws Throwable {
+	public int insert(CourseVo course) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
+		int result = 0;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
@@ -26,13 +27,16 @@ public class MysqlCourseDao implements CourseDao {
 			stmt.setString(1, course.getTitle());
 			stmt.setString(2, course.getDescription());
 			stmt.setInt(3, course.getHours());
-			stmt.executeUpdate();
+			result = stmt.executeUpdate();
+			System.out.println("insert result:" + result);
 		} catch (Throwable e) {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
 			dbConnectionPool.returnConnection(con);
 		}
+		
+		return result;
 	}
 	
 	public List<CourseVo> list(int pageNo, int pageSize) 
@@ -113,7 +117,7 @@ public class MysqlCourseDao implements CourseDao {
 			stmt.setInt(3, course.getHours());
 			stmt.setInt(4, course.getNo());
 			result = stmt.executeUpdate();
-			System.out.println("delete result:" + result);
+			System.out.println("update result:" + result);
 		} catch (Throwable e) {
 			throw e;
 		} finally { 

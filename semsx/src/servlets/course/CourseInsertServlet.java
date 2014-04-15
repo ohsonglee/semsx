@@ -42,7 +42,7 @@ public class CourseInsertServlet extends HttpServlet {
 			
 			dao.insert(vo);
 			
-			out.println("<div style=color:red>등록 성공!</div>");
+			out.println("<div style=color:green>등록 성공!</div>");
 			
 		} catch (Throwable e) {
 			out.println("<div style=color:red>오류 발생 했음!</div>");
