@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>강의관리 테스트</title>
+<style>
+
+body {
+margin: 0;
+padding: 0;
+ margin : auto;
+}
+
+#aa {
+height: 120px;
+background-color:#EAEAEA;
+padding: 0px;
+margin-bottom: 35px;
+}
+
+.dd{
+  background: #3498db;
+  border-radius: 50px;
+  font:monospace;
+  font-size: 50px;
+  padding: 40px 20px 20px 20px;
+  width: 150px;
+  height: 150px;
+  text-align : center;
+  text-decoration: none;
+  letter-spacing: 2px;
+  margin: 20px;
+  color: white;
+  
+}
+
+.dd:hover {
+  background: #6cc0f5;
+  text-decoration: none;
+}
+#bb{
+  /*  border:1px solid red; */
+    width: 1200px;
+    height: 170px;
+    position: relative;
+    left: 30px;
+}
+#c1{
+float: left;
+}
+#c2{
+float: left;
+}
+#c3{
+float: left;
+}
+#c4{
+float: left;
+}
+#c5{
+float: left;
+}
+
+</style>
+</head>
+<body>
+<div id="aa"></div>
+<div id="bb">
+<div id="c1"><h1 class="dd"><a href="list.bit?pageNo=1&pageSize=10" style="text-decoration:none">강의<br>목록</a></h1><br></div>
+<div id="c2"><h1 id="c2" class="dd"><a href="detail.bit?no=585" style="text-decoration:none">강의<br>조회</a></h1><br></div>
+<div id="c3"><h1 class="dd"><a href="insert.bit?title=자바&안드로이드&description=5살 아이도 배울 수 있는 자바그림책!&hours=8" style="text-decoration:none">강의<br>등록</a></h1><br></div>
+<div id="c4"><h1 class="dd"><a href="update.bit?no=586&title=html과css&description=이제는 나도 홈페이지 만들 수 있다.&hours=4" style="text-decoration:none">강의<br>변경</a></h1><br></div>
+<div id="c5"><h1 class="dd"><a href="delete.bit?no=584" style="text-decoration:none">강의<br>삭제</a></h1></div>
+
+</div>
+</body>
+</html>
