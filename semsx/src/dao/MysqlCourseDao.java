@@ -96,9 +96,10 @@ public class MysqlCourseDao implements CourseDao {
 		}
 	}
 	
-	public void update(CourseVo course) throws Throwable {
+	public int update(CourseVo course) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
+		int result = 0;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
@@ -111,30 +112,36 @@ public class MysqlCourseDao implements CourseDao {
 			stmt.setString(2, course.getDescription());
 			stmt.setInt(3, course.getHours());
 			stmt.setInt(4, course.getNo());
-			stmt.executeUpdate();
+			result = stmt.executeUpdate();
+			System.out.println("delete result:" + result);
 		} catch (Throwable e) {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
 			dbConnectionPool.returnConnection(con);
 		}
+		return result;
 	}
 	
-	public void delete(int no) throws Throwable {
+	public int delete(int no) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
+		int result = 0;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
 					"delete from SE_COURS where CNO=?"	);
 			stmt.setInt(1, no);
-			stmt.executeUpdate();
+			result = stmt.executeUpdate();
+			
+			System.out.println("delete result:" + result);
 		} catch (Throwable e) {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
 			dbConnectionPool.returnConnection(con);
 		}
+		return result;
 	}
 }
 

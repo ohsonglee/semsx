@@ -22,9 +22,9 @@ public class CourseDetailServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>수업상세정보</title></head><body>");
+		out.println("<html><head><title>강의상세정보</title></head><body>");
 		try {
-			out.println("<h1>수업 상세정보</h1>");
+			out.println("<h1 style=color:#5fb636>강의 상세정보</h1>");
 			
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
@@ -33,33 +33,33 @@ public class CourseDetailServlet extends HttpServlet {
 			
 			CourseVo course = dao.detail(no);
 			
-			out.println("<table border='1'>");
+			out.println("<table cellpadding='4' border='1'>");
 			out.println("<tr>");
-			out.println("	<th>번호</th>");
-			out.println("	<td>" + course.getNo() + "</td>");
+			out.println("	<th style='background-color:red;'>번호</th>");
+			out.println("	<td style='background-color:lightyellow;color:blue'>" + course.getNo() + "</td>");
 			out.println("</tr>");
 			
 			out.println("<tr>");
-			out.println("	<th>수업명</th>");
-			out.println("	<td>" + course.getTitle() + "</td>");
+			out.println("	<th style='background-color:red;'>수업명</th>");
+			out.println("	<td style='background-color:lightyellow;color:blue'>" + course.getTitle() + "</td>");
 			out.println("</tr>");
 			
 			out.println("<tr>");
-			out.println("	<th>수업내용</th>");
-			out.println(" <td><textarea rows='5' cols='60'>"
+			out.println("	<th style='background-color:red;'>수업내용</th>");
+			out.println(" <td style='background-color:lightyellow;color:blue'><textarea rows='5' cols='60' style='background-color:lightyellow;color:blue'>"
 					+ course.getDescription()
 					+ "</textarea></td>");
 			out.println("</tr>");
 			
 			out.println("<tr>");
-			out.println("	<th>수업시간</th>");
-			out.println("	<td>" + course.getHours() + "</td>");
+			out.println("	<th style='background-color:red;'>수업시간</th>");
+			out.println("	<td style='background-color:lightyellow;color:blue'>" + course.getHours() + "</td>");
 			out.println("</tr>");
 			
 			
 			out.println("</table>");
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
+			out.println("<div  style=color:red>오류 발생 했음!</div>");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");

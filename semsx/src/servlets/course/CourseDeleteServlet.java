@@ -20,20 +20,23 @@ public class CourseDeleteServlet extends HttpServlet {
 
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목삭제정보</title></head></body>");
+		out.println("<html><head><title>강의삭제</title></head></body>");
 
 		try {
-			out.println("<h1>수업삭제 결과</h1>");
+			out.println("<h1 style=color:#5fb636>강의 삭제 결과</h1>");
 			
 			CourseDao dao = 	(CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
 
 			int no = Integer.parseInt(request.getParameter("no"));
 
-			dao.delete(no);
-			out.println("삭제 성공!");
+			int result = dao.delete(no);
+			if (result > 0)
+				out.println("<div style=color:green>삭제 성공!</div>");
+			else 
+				out.println("<div style=color:red>삭제 실패!</div>");
 		} catch (Throwable e) {
-			out.println("오류발생!");
+			out.println("<div style=color:red>오류 발생 했음!</div>");
 		}
 		out.println("</body></html>");
 	}

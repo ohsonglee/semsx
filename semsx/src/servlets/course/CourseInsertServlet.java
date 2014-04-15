@@ -27,10 +27,10 @@ public class CourseInsertServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>수업등록</title></head><body>");
+		out.println("<html><head><title>강의등록</title></head><body>");
 		
 		try {
-			out.println("<h1>수업 등록 결과</h1>");
+			out.println("<h1 style=color:#5fb636>강의 등록 결과</h1>");
 			
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
@@ -42,10 +42,10 @@ public class CourseInsertServlet extends HttpServlet {
 			
 			dao.insert(vo);
 			
-			out.println("등록 성공!");
+			out.println("<div style=color:red>등록 성공!</div>");
 			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
+			out.println("<div style=color:red>오류 발생 했음!</div>");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");
