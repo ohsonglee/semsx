@@ -117,12 +117,12 @@ public class MysqlUsersDao implements UsersDao {
 			stmt = con.prepareStatement(
 					"update SE_USERS set"
 							+ " EMAIL=?" 
-							+ " PWD=?" 
-							+ " NAME=?" 
-							+ " TEL=?" 
-							+ " FAX=?" 
-							+ " POSTNO=?" 
-							+ " ADDR=?" 
+							+ ", PWD=?" 
+							+ ", NAME=?" 
+							+ ", TEL=?" 
+							+ ", FAX=?" 
+							+ ", POSTNO=?" 
+							+ ", ADDR=?" 
 							//+ " PHOT_PATH=?" 
 							+ " where UNO=?");
 			
@@ -133,7 +133,7 @@ public class MysqlUsersDao implements UsersDao {
 			stmt.setString(5, users.getFax());
 			stmt.setString(6, users.getPostNo());
 			stmt.setString(7, users.getAddr());
-			
+			stmt.setInt(8, users.getNo());
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
@@ -143,15 +143,23 @@ public class MysqlUsersDao implements UsersDao {
 		}
 	}
 	
-	public void delete(int no) throws Throwable {
+
+    public void delete(int no) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
+					"delete from SE_STUDS where UNO=?");
+			stmt.setInt(1, no);
+			stmt.executeUpdate();
+			stmt.close();
+			
+			stmt = con.prepareStatement(
 					"delete from SE_USERS where UNO=?");
 			stmt.setInt(1, no);
 			stmt.executeUpdate();
+			
 		} catch (Throwable e) {
 			throw e;
 		} finally { 

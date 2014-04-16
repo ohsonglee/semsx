@@ -38,31 +38,33 @@ public class UsersUpdateServlet extends HttpServlet {
 			out.println("<body>");
 			out.println(" <h1>사용자 변경</h1>");
 			out.println(" <form action='update.bit' method='post'>");
-			out.println(" 사용자번호: <input type='text' name='no' value='"+vo.getNo()+"'  readonly><br>");
-			out.println("이메일: <input type='text' name='title' value=' "
+			out.println(" 사용자번호: <input type='text' name='no' value='"
+					+vo.getNo()+"'  readonly"
+					+ "><br>");
+			out.println("이메일: <input type='text' name='email' value='"
 					+ vo.getEmail()
 					+ " ' ><br>");
-			out.println("패스워드:<br><textarea name='description' rows='10' cols='80'>"
+			out.println("패스워드:<input type='password' name='password'"
 					+ vo.getPassword()
-					+ "</textarea><br>");
-			out.println("이름: <input type='text' name='hours' value='"
+					+"' ><br>");
+			out.println("이름: <input type='text' name='name' value='"
 					+ vo.getName()
 					+"' ><br>");
-			out.println("전화번호: <input type='text' name='hours' value='"
+			out.println("전화번호: <input type='text' name='tel' value='"
 					+ vo.getTel()
 					+"' ><br>");
-			out.println("팩스: <input type='text' name='title' value=' "
+			out.println("팩스: <input type='text' name='fax' value='"
 					+ vo.getFax()
-					+ " ' ><br>");
-			out.println("우편번호:<br><textarea name='description' rows='10' cols='80'>"
+					+ "' ><br>");
+			out.println("우편번호: <input type='text' name='postNo'  value='"
 					+ vo.getPostNo()
-					+ "</textarea><br>");
-			out.println("주소: <input type='text' name='hours' value='"
+					+ "'><br>");
+			out.println("주소: <input type='text' name='addr' value='"
 					+ vo.getAddr()
 					+"' ><br>");
-			out.println("사진여부: <input type='text' name='title' value=' "
+			out.println("사진여부: <input type='text' name='phot' value='"
 					+ vo.getPhot()
-					+ " ' ><br>");
+					+ "' readonly><br>");
 			
 			out.println("  <input type='submit' value='변경'>");
 			out.println("  <input type='button' value='취소'");
