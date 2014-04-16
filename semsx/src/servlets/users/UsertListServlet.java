@@ -28,7 +28,7 @@ public class UsertListServlet extends HttpServlet {
 		try {
 			out.println("<h1>사용자 정보 목록</h1>");
 			
-			UsersDao dao = (UsersDao)this.getServletContext().getAttribute("UersDao");
+			UsersDao dao = (UsersDao)this.getServletContext().getAttribute("UsersDao");
 			
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));

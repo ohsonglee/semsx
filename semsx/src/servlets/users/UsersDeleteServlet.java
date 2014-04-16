@@ -55,6 +55,7 @@ public class UsersDeleteServlet extends HttpServlet {
 			//  - 콘텐츠를 출력하지 않기 때문에 => 이전에 출력한 내용은  취소된다.
 			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 		} catch (Throwable e) {
+			e.printStackTrace();
 			out.println("오류발생!");
 		}
 		out.println("</body></html>");
