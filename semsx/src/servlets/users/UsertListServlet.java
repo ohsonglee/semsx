@@ -35,7 +35,7 @@ public class UsertListServlet extends HttpServlet {
 
 			List<UsersVo> list = dao.list(pageNo, pageSize);
 			
-			out.println("<a href='form.html'>새과목</a><br>");
+			out.println("<a href='user.html'>사용자등록</a><br>");
 
 			out.println("<table border='1'>");
 			out.println("<tr>");
