@@ -49,7 +49,7 @@ public class MysqlUsersDao implements UsersDao {
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"select UNO, NAME from SE_USERS"
+					"select UNO, NAME, EMAIL, TEL from SE_USERS"
 							+ " order by UNO desc"
 							+ " limit ?, ?");
 			stmt.setInt(1, (pageNo - 1) * pageSize);
