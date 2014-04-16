@@ -38,7 +38,7 @@ public class CourseListServlet extends HttpServlet {
 			List<CourseVo> list = dao.list(pageNo, pageSize);
 			
 		
-			out.println("<table cellpadding='4' border='1'>");
+			out.println("<table width='400' cellpadding='4' border='1'>");
 			out.println("<tr style='background-color:red;'>");
 			out.println("	<th>번호</th>");
 			out.println("	<th>수업명</th>");
