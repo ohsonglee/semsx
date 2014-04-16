@@ -22,7 +22,7 @@ public class MysqlUsersDao implements UsersDao {
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"insert SE_USERS(EMAIL,PWD,NAME,TEL,FAX,POSTNO,ADDR,PHOT_PATH) values(?, ?, ?, ?, ?, ?, ?)");
+					"insert SE_USERS(EMAIL,PWD,NAME,TEL,FAX,POSTNO,ADDR,PHOT_PATH) values(?, ?, ?, ?, ?, ?, ?, ?)");
 			stmt.setString(1, users.getEmail());
 			stmt.setString(2, users.getPassword());
 			stmt.setString(3, users.getName());
