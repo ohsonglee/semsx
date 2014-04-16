@@ -15,6 +15,13 @@ import dao.CourseDao;
 @WebServlet("/course/insert.bit")
 @SuppressWarnings("serial")
 public class CourseInsertServlet extends HttpServlet {
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
+	    doGet(request, response);
+	}
+	
 	@Override
 	protected void doGet(
 			HttpServletRequest request, HttpServletResponse response)
@@ -23,14 +30,16 @@ public class CourseInsertServlet extends HttpServlet {
 		// - 서블릿 컨테이너의 안내에 따라 설정한다.
 		// - getParameter()를 호출하기 전에 실행해야 한다.
 		//   단, 한번이라도 getParameter()를 호출했다면 적용안됨. 
-		request.setCharacterEncoding("UTF-8");
+		
+		//CharacterEncodingFilter로 대체함
+		//request.setCharacterEncoding("UTF-8");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>강의등록</title></head><body>");
+		out.println("<html><head><title>수업등록</title></head><body>");
 		
 		try {
-			out.println("<h1 style=color:#5fb636>강의 등록 결과</h1>");
+			out.println("<h1>수업 등록 결과</h1>");
 			
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
@@ -42,10 +51,11 @@ public class CourseInsertServlet extends HttpServlet {
 			
 			dao.insert(vo);
 			
-			out.println("<div style=color:green>등록 성공!</div>");
+			out.println("등록 성공!");
+			response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 			
 		} catch (Throwable e) {
-			out.println("<div style=color:red>오류 발생 했음!</div>");
+			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");

@@ -7,25 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.DBConnectionPool;
-import vo.CourseVo;
+import vo.UsersVo;
 
-public class MysqlCourseDao implements CourseDao {
+public class MysqlUsersDao implements UsersDao {
 	DBConnectionPool dbConnectionPool;
 
 	public void setDBConnectionPool(DBConnectionPool dbConnectionPool) {
 		this.dbConnectionPool = dbConnectionPool;
 	}
 	
-	public void insert(CourseVo course) throws Throwable {
+	public void insert(UsersVo users) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"insert SE_COURS(TITLE, DEST,HOURS) values(?, ?, ?)");
-			stmt.setString(1, course.getTitle());
-			stmt.setString(2, course.getDescription());
-			stmt.setInt(3, course.getHours());
+					"insert SE_USERS(EMAIL,PWD,NAME,TEL,FAX,POSTNO,ADDR,PHOT_PATH) values(?, ?, ?, ?, ?, ?, ?)");
+			stmt.setString(1, users.getEmail());
+			stmt.setString(2, users.getPassword());
+			stmt.setString(3, users.getName());
+			stmt.setString(4, users.getTel());
+			stmt.setString(5, users.getFax());
+			stmt.setString(6, users.getPostNo());
+			stmt.setString(7, users.getAddr());
+			stmt.setString(8, users.getPhot());
+			
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
@@ -35,7 +41,7 @@ public class MysqlCourseDao implements CourseDao {
 		}
 	}
 	
-	public List<CourseVo> list(int pageNo, int pageSize) 
+	public List<UsersVo> list(int pageNo, int pageSize) 
 			throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
@@ -43,17 +49,19 @@ public class MysqlCourseDao implements CourseDao {
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"select CNO, TITLE from SE_COURS"
-							+ " order by CNO desc"
+					"select UNO, NAME from SE_USERS"
+							+ " order by UNO desc"
 							+ " limit ?, ?");
 			stmt.setInt(1, (pageNo - 1) * pageSize);
 			stmt.setInt(2, pageSize);
 			rs = stmt.executeQuery();
-			ArrayList<CourseVo> list = new ArrayList<CourseVo>();
+			ArrayList<UsersVo> list = new ArrayList<UsersVo>();
 			while(rs.next()) {
-				list.add(new CourseVo()
-													.setNo(rs.getInt("CNO"))
-													.setTitle(rs.getString("TITLE")));
+				list.add(new UsersVo()
+													.setNo(rs.getInt("UNO"))
+													.setName(rs.getString("NAME"))
+													.setEmail(rs.getString("EMAIL"))
+													.setTel(rs.getString("TEL")));
 			}
 			return list;
 		} catch (Throwable e) {
@@ -65,24 +73,29 @@ public class MysqlCourseDao implements CourseDao {
 		}
 	}
 	
-	public CourseVo detail(int no) throws Throwable {
+	public UsersVo detail(int no) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"select CNO, TITLE, DEST,HOURS from SE_COURS"
-							+ " where CNO=?");
+					"select UNO,EMAIL,PWD,NAME,TEL,FAX,POSTNO,ADDR,PHOT_PATH from SE_USERS"
+							+ " where UNO=?");
 			stmt.setInt(1, no);
 			rs = stmt.executeQuery();
 			
 			if (rs.next()) {
-				return new CourseVo()
-										.setNo(rs.getInt("CNO"))
-										.setTitle(rs.getString("TITLE"))
-										.setDescription(rs.getString("DEST"))
-										.setHours(rs.getInt("HOURS"));
+				return new UsersVo()
+										.setNo(rs.getInt("UNO"))
+										.setEmail(rs.getString("EMAIL"))
+										.setPassword(rs.getString("PWD"))
+										.setName(rs.getString("NAME"))
+										.setTel(rs.getString("TEL"))
+										.setFax(rs.getString("FAX"))
+										.setPostNo(rs.getString("POSTNO"))
+										.setAddr(rs.getString("ADDR"))
+										.setPhot(rs.getString("PHOT_PATH"));
 									
 			} else {
 				throw new Exception("해당 과목을 찾을 수 없습니다.");
@@ -96,21 +109,31 @@ public class MysqlCourseDao implements CourseDao {
 		}
 	}
 	
-	public void update(CourseVo course) throws Throwable {
+	public void update(UsersVo users) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"update SE_COURS set"
-							+ " TITLE=?" 
-							+ ", DEST=?"
-							+ ", HOURS=?"
-							+ " where CNO=?");
-			stmt.setString(1, course.getTitle());
-			stmt.setString(2, course.getDescription());
-			stmt.setInt(3, course.getHours());
-			stmt.setInt(4, course.getNo());
+					"update SE_USERS set"
+							+ " EMAIL=?" 
+							+ " PWD=?" 
+							+ " NAME=?" 
+							+ " TEL=?" 
+							+ " FAX=?" 
+							+ " POSTNO=?" 
+							+ " ADDR=?" 
+							//+ " PHOT_PATH=?" 
+							+ " where UNO=?");
+			
+			stmt.setString(1, users.getEmail());
+			stmt.setString(2, users.getPassword());
+			stmt.setString(3, users.getName());
+			stmt.setString(4, users.getTel());
+			stmt.setString(5, users.getFax());
+			stmt.setString(6, users.getPostNo());
+			stmt.setString(7, users.getAddr());
+			
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
@@ -126,7 +149,7 @@ public class MysqlCourseDao implements CourseDao {
 		try {
 			con = dbConnectionPool.getConnection();
 			stmt = con.prepareStatement(
-					"delete from SE_COURS where CNO=?"	);
+					"delete from SE_USERS where UNO=?");
 			stmt.setInt(1, no);
 			stmt.executeUpdate();
 		} catch (Throwable e) {

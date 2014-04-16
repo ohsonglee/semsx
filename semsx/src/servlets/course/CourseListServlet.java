@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import vo.CourseVo;
 import dao.CourseDao;
-
+/*
+ * 과목명에 상세보기 링크 추가
+ * 
+ */
 @WebServlet("/course/list.bit")
 @SuppressWarnings("serial")
 public class CourseListServlet extends HttpServlet {
@@ -24,10 +27,9 @@ public class CourseListServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>강의목록</title></head><body>");
-		//out.println("<body style="width:320px; height: 100px; overflow:auto">");
 		
 		try {
-			out.println("<h1 style=color:#5fb636>강의 목록</h1>");
+			out.println("<h1 >강의 목록</h1>");
 			
 			CourseDao dao = (CourseDao)this.getServletContext()
 																							.getAttribute("CourseDao");
@@ -37,22 +39,24 @@ public class CourseListServlet extends HttpServlet {
 			
 			List<CourseVo> list = dao.list(pageNo, pageSize);
 			
-		
-			out.println("<table width='400' cellpadding='4' border='1'>");
-			out.println("<tr style='background-color:red;'>");
+			out.println("<a href='form.html'>새강좌 등록</a><br>");
+			out.println("<table border='1'>");
+			out.println("<tr>");
 			out.println("	<th>번호</th>");
 			out.println("	<th>수업명</th>");
 			out.println("</tr>");
 			
 			for (CourseVo course : list) {
-				out.println("<tr style='background-color:lightyellow;color:blue'>");
+				out.println("<tr>");
 				out.println("	<td>" + course.getNo() + "</td>");
-				out.println("	<td>" + course.getTitle() + "</td>");
+				out.println("	<td><a href ='detail.bit?no="
+						+ course.getNo() 
+						+ " '>"  + course.getTitle() + "</td>");
 				out.println("</tr>");
 			}
 			out.println("</table>");
 		} catch (Throwable e) {
-			out.println("<div style=color:red>오류 발생 했음!</div>");
+			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");

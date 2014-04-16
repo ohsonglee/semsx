@@ -11,32 +11,51 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.CourseDao;
 
+/* Refresh
+ *  - 일정시간 후 서버에 지정된 URL을 요청하게 만듬
+ *  -1) 응답 헤더에 리프래시 정보 심기
+ *  -2) html 헤더에 리프래시 정보 심기
+ * 
+ *  Redirect
+ *  - 클라이언트에게 다시 요청할 주소를 알려줌.
+ *  - 경과시간 지정불가.
+ *  - 콘텐츠를 보내지 않는다는 장점!
+ */
 @WebServlet("/course/delete.bit")
 @SuppressWarnings("serial")
 public class CourseDeleteServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		//1)응답 헤더에 Refresh 정보를 심기
+		//response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>강의삭제</title></head></body>");
+		out.println("<html><head><title>과목삭제정보</title>");
+		
+		//2) 응답(HTML) 내용안에 Refresh 명령어 심기( 1,2종 택1)
+		//out.println("<meta http-equiv='Refresh' "
+		//		+ " content='1;url=list.bit?pageNo=1&pageSize=10'>");
+		out.println("</head></body>");
 
 		try {
-			out.println("<h1 style=color:#5fb636>강의 삭제 결과</h1>");
+			out.println("<h1>수업 삭제 결과</h1>");
 			
 			CourseDao dao = 	(CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
 
 			int no = Integer.parseInt(request.getParameter("no"));
 
-			int result = dao.delete(no);
-			if (result > 0)
-				out.println("<div style=color:green>삭제 성공!</div>");
-			else 
-				out.println("<div style=color:red>삭제 실패!</div>");
+			dao.delete(no);
+			out.println("삭제 성공!");
+			
+			//3) Redirect 처리
+			//  - 콘텐츠를 출력하지 않기 때문에 => 이전에 출력한 내용은  취소된다.
+			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 		} catch (Throwable e) {
-			out.println("<div style=color:red>오류 발생 했음!</div>");
+			out.println("오류발생!");
 		}
 		out.println("</body></html>");
 	}
