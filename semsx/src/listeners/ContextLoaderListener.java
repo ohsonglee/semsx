@@ -42,9 +42,9 @@ public class ContextLoaderListener implements ServletContextListener {
 		courseDao.setDBConnectionPool(dbConnectionPool);
 		sc.setAttribute("CourseDao", courseDao);
 		
-		MysqlUsersDao uersDao = new MysqlUsersDao();
-		uersDao.setDBConnectionPool(dbConnectionPool);
-		sc.setAttribute("UersDao", uersDao);
+		MysqlUsersDao userDao = new MysqlUsersDao();
+		userDao.setDBConnectionPool(dbConnectionPool);
+		sc.setAttribute("UserDao", userDao);
 	}
 
 }
