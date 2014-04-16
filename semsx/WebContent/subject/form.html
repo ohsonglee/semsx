@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>과목입력폼</title>
+</head>
+<body>
+<h1>과목 입력</h1>
+<!-- 
+ get 방식 한계
+  - URL 뒤에 붙어 전달한다.
+  - 최대 8k만 가능
+  - & 문자를 전달할 수 없음. 
+  
+  post 방식
+   - size의 제약을 벗어나게 된다.
+   
+   서버에 보내지 않을 데이터는 name을 적지 않는다.
+   서버에서는 name 속성의 값으로 해당 데이터를 받을 수 있다.
+-->
+<form action="insert.bit" method="post">
+과목명:<input type="text" name="title"><br>
+설명: <textarea name="description" rows="10" cols="80"></textarea><br>
+<input type="submit" value="등록">
+<input type="reset" value="취소">
+</form>
+</body>
+</html>
