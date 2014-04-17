@@ -13,7 +13,7 @@
 
 <body>
 <h1>과목 목록</h1>
-<a href='form.html'>새과목</a><br>
+<a href='subject.html'>새과목</a><br>
 <table border='1'>
 <tr>
   <th>번호</th>
