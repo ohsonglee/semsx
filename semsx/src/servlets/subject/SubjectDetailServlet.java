@@ -24,7 +24,9 @@ public class SubjectDetailServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목상세정보</title></head><body>");
+		out.println("<html><head><title>과목상세정보</title>"
+				+ "<LINK href='/semsx/user/css.css' rel='stylesheet' type='text/css'>"
+				+ "</head><body>");
 		
 		try {
 			out.println("<h1>과목 상세정보</h1>");

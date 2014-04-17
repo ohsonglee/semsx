@@ -25,7 +25,9 @@ public class SubjectListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목목록</title></head><body>");
+		out.println("<html><head><title>과목목록</title>"
+				+ "<LINK href='/semsx/user/css.css' rel='stylesheet' type='text/css'>"
+				+ "</head><body>");
 		
 		try {
 			out.println("<h1>과목 목록</h1>");

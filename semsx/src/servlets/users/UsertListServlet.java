@@ -23,7 +23,9 @@ public class UsertListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>사용자 정보 목록</title></head><body>");
+		out.println("<html><head><title>사용자 정보 목록</title>"
+				+ "<LINK href='/semsx/user/css.css' rel='stylesheet' type='text/css'>"
+				+ "</head><body>");
 		
 		try {
 			out.println("<h1>사용자 정보 목록</h1>");
