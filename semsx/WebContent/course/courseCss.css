@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Student Education Management System</title>
-<style>
 body {
-color : white;
+color : black;
 background-image: url("http://cfs7.blog.daum.net/original/30/blog/2007/09/21/14/36/46f3582da2f8d&filename=%EB%B0%94%ED%83%95%ED%99%94%EB%A9%B4-32.jpg");
 
 background-repeat:no-repeat;
@@ -50,6 +44,7 @@ width: 90px;
 height: 49px;
 }
 #toptext {
+	color: white;
 }
 #p{
 text-align: center;
@@ -59,12 +54,12 @@ color: black;
 }
 #box {
 width: 740px;
-height: 330px;
+height:430px;
 margin: auto;
 }
 #main {
 width: 340px;
-height: 330px;
+height: 430px;
 float: left;
 background: rgba(0,0,0,0.5);
 border-radius: 2px;
@@ -73,6 +68,12 @@ color: #ccc;
 margin: 0;
 }
 #key {
+width: 330px;
+height: 290px;
+float: right;
+}
+#key2 {
+margin-top: 10px;
 width: 330px;
 height: 290px;
 float: right;
@@ -96,8 +97,14 @@ margin-right: 30px;
 width: 42%;
 float: left;
 }
-.row3 {
-
+.row5 {
+width: 30%;
+float: left;
+margin-right: 30px;
+}
+.row6 {
+width: 30%;
+float: left;
 }
 #btnAdd {
 display: inline-block;
@@ -110,7 +117,7 @@ background: #345;
 border: 0;
 border-radius: 4px;
 -webkit-appearance: none;
-width: 90%;
+width: 98%%;
 cursor: pointer;
 background: #3671b5;
 color: #fff!important;
@@ -121,8 +128,8 @@ line-height: 22px!important;
 font-weight: 700;
 }
 #btnAdd:HOVER {
-	background: #4bf;
-	width: 90%;
+  background: #4bf;
+  width: 98%%;
 cursor: pointer;
 color: #fff!important;
 padding: 10px 20px!important;
@@ -153,6 +160,38 @@ line-height: 22px!important;
 font-weight: 700;
 }
 #btnList:HOVER {
+  background: #4bf;
+  width: 90%;
+cursor: pointer;
+color: #fff!important;
+padding: 10px 20px!important;
+border-radius: 4px;
+font-size: 16px!important;
+line-height: 22px!important;
+font-weight: 700;
+}
+#btnInsert {
+display: inline-block;
+cursor: pointer;
+padding: 7px 10px;
+font-weight: 700;
+line-height: 1;
+color: #fff;
+background: #345;
+border: 0;
+border-radius: 4px;
+-webkit-appearance: none;
+width: 90%;
+cursor: pointer;
+background: #3671b5;
+color: #fff!important;
+padding: 10px 20px!important;
+border-radius: 4px;
+font-size: 16px!important;
+line-height: 22px!important;
+font-weight: 700;
+}
+#btnInsert:HOVER {
   background: #4bf;
   width: 90%;
 cursor: pointer;
@@ -196,44 +235,66 @@ border-radius: 4px;
 font-size: 16px!important;
 line-height: 22px!important;
 font-weight: 700;
+
+}
+#btnDelete {
+float:left;
+display: inline-block;
+cursor: pointer;
+padding: 7px 10px;
+font-weight: 700;
+line-height: 1;
+color: #fff;
+background: #345;
+border: 0;
+border-radius: 4px;
+-webkit-appearance: none;
+width: 45%;
+cursor: pointer;
+background: #3671b5;
+color: #fff!important;
+padding: 10px 20px!important;
+border-radius: 4px;
+font-size: 16px!important;
+line-height: 22px!important;
+font-weight: 700;
+margin-left: 10px;
+}
+#btnDelete:HOVER {
+
+  background: #4bf;
+  width: 45%;
+cursor: pointer;
+color: #fff!important;
+padding: 10px 20px!important;
+border-radius: 4px;
+font-size: 16px!important;
+line-height: 22px!important;
+font-weight: 700;
+margin-left: 10px;
 }
 #row3 {
 float: left;
 width: 170px;
 }
 
+#tata{
+	width: 335px;
+	padding:0px;
 
-</style>
-</head>
-<body>
-<div id="rainb"></div>
-<div id="topmenu"><div id="menu">
-<ul>
-  <li class="me"><a href="/semsx/subject/list.bit?pageNo=1&pageSize=10" style="text-decoration:none">Subject</a></li>
-  <li class="me"><a href="/semsx/course/list.bit?pageNo=1&pageSize=10"style="text-decoration:none">Course</a></li>
-  <li class="me"><a href="/semsx/user/list.bit?pageNo=1&pageSize=10" style="text-decoration:none">Users</a></li>
-</ul>
-</div></div>
-<div id="toptext"><p id="p"></p></div>
-<div id="center">
-<div id="box">
-<div id="main"><div>
-<form class="form" action="insert.bit" method="post">
-<div class="row"><input type="text" class="simple" name="title" placeholder="강의명"></div>
-<div class="row"><textarea cols="10" rows="7" class="simple" name="description" placeholder="강의설명을 적어주세요."></textarea></div>
-<div class="row"><input type="text" class="simple" name="hours" placeholder="강의시간"></div>
+}
+table, td, th
+{
+background-color: white;
 
-<div id="row3"><input type="submit" id="btnAdd" value="sign up"></div>
-<div id="row4"><input type="reset" id="btnCancel" value="Cancel"></div>
-</form>
-</div></div>
-<div id="key">
-  <a href="list.bit?pageNo=1&pageSize=10" style="text-decoration:none"><input type="submit" id="btnList" value="강의리스트 바로가기"></a>
-  </div>
+border:1px solid gray;
+text-align: center;
+border-radius: 3px;
+  height: 37px;
 
-
-</div>
-</div>
-<div id="footer"></div>
-</body>
-</html>
+}
+th
+{
+background-color:#3671b5;
+color:white;
+}
