@@ -12,7 +12,7 @@
   <meta charset="UTF-8">
   <title>강의목록(byJSP)</title></head><body>
 <h1 >강의 목록</h1>
-<a href='form.html'>새강좌 등록</a><br>
+<a href='course.html'>새강좌 등록</a><br>
 <table border='1'>
 <tr>
   <th>번호</th>
