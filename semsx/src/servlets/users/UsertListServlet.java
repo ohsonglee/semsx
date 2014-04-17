@@ -1,9 +1,9 @@
 package servlets.users;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,52 +21,21 @@ public class UsertListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>사용자 정보 목록</title>"
-				+ "<LINK href='/semsx/user/css.css' rel='stylesheet' type='text/css'>"
-				+ "</head><body>");
-		
 		try {
-			out.println("<h1>사용자 정보 목록</h1>");
-			
 			UsersDao dao = (UsersDao)this.getServletContext().getAttribute("UsersDao");
 			
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 
 			List<UsersVo> list = dao.list(pageNo, pageSize);
+
+			request.setAttribute("list",list);
 			
-			out.println("<a href='user.html'>사용자등록</a><br>");
-
-			out.println("<table border='1'>");
-			out.println("<tr>");
-			out.println("	<th>번호</th>");
-			out.println("	<th>이름</th>");
-			out.println("	<th>이메일</th>");
-			out.println("	<th>전화번호</th>");
-			out.println("</tr>");
-
-			for (UsersVo user : list) {
-				out.println("<tr>");
-				out.println("	<td>" + user.getNo()	+ "</td>");
-				out.println("	<td><a href='detail.bit?no="
-						+ user.getNo()
-						+ "'>" + user.getName() + "</a></td>");
-				out.println("	<td>" + user.getEmail()	+ "</td>");
-				out.println("	<td>" + user.getTel()	+ "</td>");
-				out.println("</tr>");
-			}
-			out.println("</table>");
-
-
+			RequestDispatcher rd = request.getRequestDispatcher("/user/list.jsp");
+			rd.forward(request, response);
+			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음.");
 			e.printStackTrace();
 		}
-		
-		out.println("</body></html>");
-		
 	}
-	
 }
