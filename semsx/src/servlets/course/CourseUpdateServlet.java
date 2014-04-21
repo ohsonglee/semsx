@@ -45,15 +45,15 @@ public class CourseUpdateServlet extends HttpServlet {
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
 
-			CourseVo vo = new CourseVo();
-			vo.setNo(Integer.parseInt(request.getParameter("no")));
-			vo.setTitle(request.getParameter("title"));
-			vo.setDescription(request.getParameter("description"));
-			vo.setHours(Integer.parseInt(request.getParameter("hours")));
+			CourseVo course = new CourseVo();
+			course.setNo(Integer.parseInt(request.getParameter("no")));
+			course.setTitle(request.getParameter("title"));
+			course.setDescription(request.getParameter("description"));
+			course.setHours(Integer.parseInt(request.getParameter("hours")));
 
-			dao.update(vo);
+			dao.update(course);
 
-			response.sendRedirect("detail.bit?no="+ vo.getNo());
+			response.sendRedirect("detail.bit?no="+ course.getNo());
 
 		} catch (Throwable e) {
 			e.printStackTrace();

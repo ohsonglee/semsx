@@ -32,12 +32,12 @@ public class CourseInsertServlet extends HttpServlet {
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("CourseDao");
 			
-			CourseVo vo = new CourseVo();
-			vo.setTitle(request.getParameter("title"));
-			vo.setDescription(request.getParameter("description"));
-			vo.setHours(Integer.parseInt(request.getParameter("hours")));
+			CourseVo course = new CourseVo();
+			course.setTitle(request.getParameter("title"));
+			course.setDescription(request.getParameter("description"));
+			course.setHours(Integer.parseInt(request.getParameter("hours")));
 			
-			dao.insert(vo);
+			dao.insert(course);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/course/insert.jsp");
 			rd.forward(request, response);
