@@ -11,4 +11,6 @@ public interface UsersDao {
 	UsersVo detail(int no) throws Throwable;
 	void update(UsersVo users) throws Throwable;
 	void delete(int no) throws Throwable;
+	
+	UsersVo getUser(String email, String password);
 }

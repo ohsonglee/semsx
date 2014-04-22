@@ -29,6 +29,10 @@ public class CharacterEncodingFilter implements Filter {
 	    FilterChain next) throws IOException, ServletException {
 		
 		// 1) service() 호출 전 작업
+		// 클라이언트에서 넘어오는 데이터를 서블릿에게 알려주지 않으면
+		// 서버에서는 클라이언트에서 넘어오는 데이터가 무조건 영어라고 생각하고 처리하게 된다.
+		// 이게 다시 DB로 들어가면 깨진 글자가 들어가게 된다.
+		// 그래서 반드시 이걸 잘 맞춰줘야 한다.(우리는 한글이니까 UTF-8로 맞춤)
 		String charset = config.getInitParameter("charset");
 		if (charset != null) {
 			request.setCharacterEncoding(charset);

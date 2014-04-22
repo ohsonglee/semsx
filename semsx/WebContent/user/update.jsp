@@ -13,6 +13,7 @@ UsersVo users = (UsersVo)request.getAttribute("users");
 <title>사용자변경(byJSP)</title>
 </head>
 <body>
+ <jsp:include page="../header.jsp" />
  <h1>사용자 변경</h1>
  <form action='update.bit' method='post'>
  사용자번호: <input type='text' name='no' value='<%=users.getNo()%>'readonly><br>
